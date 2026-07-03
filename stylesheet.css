@@ -1,0 +1,74 @@
+@charset "utf-8";
+body {
+    background-color: #005f00;
+}
+div {
+    display: flex;
+    width: 100%;
+}
+h1, p {
+    color: #fff;
+}
+td {
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid;
+}
+.maintable {
+    margin: 20px auto 80px;
+    border-spacing: 10px 0px;
+}
+.maintable td {
+    width: 50px;
+}
+.teamname {
+    height: 30px;
+}
+.team1 {
+    background-color: #ff7f7f;
+}
+.team2 {
+    background-color: #7f7fff;
+}
+.hidden {
+    border: 0px;
+    background-color: #0000;
+}
+.product {
+    height: 75px;
+    font-size: 48px;
+}
+.gap {
+    height: 10px;
+}
+.players {
+    height: 150px;
+}
+.miss {
+    height: 30px;
+}
+.locked {
+    background-color: #7f7f7f;
+}
+.points {
+    height: 50px;
+}
+.playername {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+.names {
+    border-spacing: 0px;
+}
+.names td {
+    width: 40px;
+    font-size: 12px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+.nameinput {
+    height: 100px;
+}
+select {
+    writing-mode: horizontal-tb;
+}

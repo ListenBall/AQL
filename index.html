@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>AQL</title>
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <h1>AQL</h1>
+            <p>加点:1~0　ミス:q~p　一個戻す:ハイフン　スルー:Enter　点数リセット:Space3回　名前シャッフル:@</p>
+    </div>
+    <table class="maintable">
+        <tr class="teamname">
+            <td class="hidden"></td>
+            <td colspan="3" class="team1" contenteditable="true">Большевики</td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td colspan="3" class="team2" contenteditable="true">Меньшевики</td>
+            <td class="hidden"></td>
+        </tr>
+        <tr class="product">
+            <td class="hidden"></td>
+            <td class="win1" colspan="3" id=team1point></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="hidden"></td>
+            <td class="win2" colspan="3" id="team2point"></td>
+            <td class="hidden"></td>
+        </tr>
+        <tr class="gap"></tr>
+        <tr class="players">
+            <td class="playername reach1" id="player1" contenteditable="true"></td>
+            <td class="playername reach2" id="player2" contenteditable="true"></td>
+            <td class="playername reach3" id="player3" contenteditable="true"></td>
+            <td class="playername reach4" id="player4" contenteditable="true"></td>
+            <td class="playername reach5" id="player5" contenteditable="true"></td>
+            <td class="hidden"></td>
+            <td class="playername reach6" id="player6" contenteditable="true"></td>
+            <td class="playername reach7" id="player7" contenteditable="true"></td>
+            <td class="playername reach8" id="player8" contenteditable="true"></td>
+            <td class="playername reach9" id="player9" contenteditable="true"></td>
+            <td class="playername reach10" id="player10" contenteditable="true"></td>
+        </tr>
+        <tr class="players">
+            <td class="playername reach1" id="player11" contenteditable="true"></td>
+            <td class="playername reach2" id="player12" contenteditable="true"></td>
+            <td class="playername reach3" id="player13" contenteditable="true"></td>
+            <td class="playername reach4" id="player14" contenteditable="true"></td>
+            <td class="playername reach5" id="player15" contenteditable="true"></td>
+            <td class="hidden"></td>
+            <td class="playername reach6" id="player16" contenteditable="true"></td>
+            <td class="playername reach7" id="player17" contenteditable="true"></td>
+            <td class="playername reach8" id="player18" contenteditable="true"></td>
+            <td class="playername reach9" id="player19" contenteditable="true"></td>
+            <td class="playername reach10" id="player20" contenteditable="true"></td>
+        </tr>
+        <tr class="miss">
+            <td class="reach1" id="miss1"></td>
+            <td class="reach2" id="miss2"></td>
+            <td class="reach3" id="miss3"></td>
+            <td class="reach4" id="miss4"></td>
+            <td class="reach5" id="miss5"></td>
+            <td class="hidden"></td>
+            <td class="reach6" id="miss6"></td>
+            <td class="reach7" id="miss7"></td>
+            <td class="reach8" id="miss8"></td>
+            <td class="reach9" id="miss9"></td>
+            <td class="reach10" id="miss10"></td>
+        </tr>
+        <tr class="points">
+            <td class="reach1" id="point1"></td>
+            <td class="reach2" id="point2"></td>
+            <td class="reach3" id="point3"></td>
+            <td class="reach4" id="point4"></td>
+            <td class="reach5" id="point5"></td>
+            <td class="hidden"></td>
+            <td class="reach6" id="point6"></td>
+            <td class="reach7" id="point7"></td>
+            <td class="reach8" id="point8"></td>
+            <td class="reach9" id="point9"></td>
+            <td class="reach10" id="point10"></td>
+        </tr>
+    </table>
+    <table class="names">
+        <tr class="nameinput">
+            <td id="pl1" contenteditable="true"></td>
+            <td id="pl2" contenteditable="true"></td>
+            <td id="pl3" contenteditable="true"></td>
+            <td id="pl4" contenteditable="true"></td>
+            <td id="pl5" contenteditable="true"></td>
+            <td id="pl6" contenteditable="true"></td>
+            <td id="pl7" contenteditable="true"></td>
+            <td id="pl8" contenteditable="true"></td>
+            <td id="pl9" contenteditable="true"></td>
+            <td id="pl10" contenteditable="true"></td>
+            <td id="pl11" contenteditable="true"></td>
+            <td id="pl12" contenteditable="true"></td>
+            <td id="pl13" contenteditable="true"></td>
+            <td id="pl14" contenteditable="true"></td>
+            <td id="pl15" contenteditable="true"></td>
+            <td id="pl16" contenteditable="true"></td>
+            <td id="pl17" contenteditable="true"></td>
+            <td id="pl18" contenteditable="true"></td>
+            <td id="pl19" contenteditable="true"></td>
+            <td id="pl20" contenteditable="true"></td>
+        </tr>
+        <tr>
+            <td>
+                <select id="grade1">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade2">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade3">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade4">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade5">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade6">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade7">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade8">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade9">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade10">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade11">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade12">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade13">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade14">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade15">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade16">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade17">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade18">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade19">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+            <td>
+                <select id="grade20">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+</body>
+<script src="script.js"></script>

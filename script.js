@@ -764,14 +764,14 @@ document.addEventListener("keydown", (event) => {
                 }); 
             }
         }
-        if (tm1p >= 200) {
+        if (tm1p >= 200 || (ms6 == "LOCK" && ms7 == "LOCK" && ms8 == "LOCK" && ms9 == "LOCK" && ms10 == "LOCK")) {
             tm1p = 200
                 document.querySelectorAll(".win1, .reach1, .reach2, .reach3, .reach4, .reach5").forEach(element => {
                 element.style.backgroundColor = "#0f0";
             });
         }
         document.getElementById("team1point").textContent = tm1p;
-        if (tm2p >= 200) {
+        if (tm2p >= 200 || (ms1 == "LOCK" && ms2 == "LOCK" && ms3 == "LOCK" && ms4 == "LOCK" && ms5 == "LOCK")) {
             tm2p = 200
             document.querySelectorAll(".win2, .reach6, .reach7, .reach8, .reach9, .reach10").forEach(element => {
                 element.style.backgroundColor = "#0f0";

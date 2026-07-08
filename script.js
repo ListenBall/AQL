@@ -678,12 +678,12 @@ document.addEventListener("keydown", (event) => {
         if (limitquestion == 0) {
             if (tm1p >= tm2p) {
                 document.querySelectorAll(".win1, .reach1, .reach2, .reach3, .reach4, .reach5").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
+                    element.style.backgroundColor = "#ff0";
                 });
             }
             if (tm2p >= tm1p) {
                 document.querySelectorAll(".win2, .reach6, .reach7, .reach8, .reach9, .reach10").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
+                    element.style.backgroundColor = "#ff0";
                 });
             }
         } else {
@@ -694,35 +694,35 @@ document.addEventListener("keydown", (event) => {
                 document.getElementById("miss1").style.backgroundColor = "#7f7f7f";
             } else if ((pt1 + 1) * pt2 * pt3 * pt4 * pt5 >= 200 && ms1 !== "LOCK") {
                 document.querySelectorAll(".reach1").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
+                    element.style.backgroundColor = "#0f0";
                 }); 
             }
             if (ms2 === "LOCK") {
             document.getElementById("miss2").style.backgroundColor = "#7f7f7f";
             } else if (pt1 * (pt2 + 1) * pt3 * pt4 * pt5 >= 200 && ms2 !== "LOCK") {
                 document.querySelectorAll(".reach2").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
+                    element.style.backgroundColor = "#0f0";
                 }); 
             }
             if (ms3 === "LOCK") {
                 document.getElementById("miss3").style.backgroundColor = "#7f7f7f";
             } else if (pt1 * pt2 * (pt3 + 1) * pt4 * pt5 >= 200 && ms3 !== "LOCK") {
                 document.querySelectorAll(".reach3").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
+                    element.style.backgroundColor = "#0f0";
                 }); 
             }
             if (ms4 === "LOCK") {
                 document.getElementById("miss4").style.backgroundColor = "#7f7f7f";
             } else if (pt1 * pt2 * pt3 * (pt4 + 1) * pt5 >= 200 && ms4 !== "LOCK") {
                 document.querySelectorAll(".reach4").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
+                    element.style.backgroundColor = "#0f0";
                 }); 
             }
             if (ms5 === "LOCK") {
                 document.getElementById("miss5").style.backgroundColor = "#7f7f7f";
             } else if (pt1 * pt2 * pt3 * pt4 * (pt5 + 1) >= 200 && ms5 !== "LOCK") {
                 document.querySelectorAll(".reach5").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
+                    element.style.backgroundColor = "#0f0";
                 }); 
             }
             document.querySelectorAll(".win2, .reach6, .reach7, .reach8, .reach9, .reach10").forEach(element => {
@@ -732,49 +732,49 @@ document.addEventListener("keydown", (event) => {
                 document.getElementById("miss6").style.backgroundColor = "#7f7f7f";
             } else if ((pt6 + 1) * pt7 * pt8 * pt9 * pt10 >= 200 && ms6 !== "LOCK") {
                 document.querySelectorAll(".reach6").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
+                    element.style.backgroundColor = "#0f0";
                 }); 
             }
             if (ms7 === "LOCK") {
                 document.getElementById("miss7").style.backgroundColor = "#7f7f7f";
             } else if (pt6 * (pt7 + 1) * pt8 * pt9 * pt10 >= 200 && ms7 !== "LOCK") {
                 document.querySelectorAll(".reach7").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
+                    element.style.backgroundColor = "#0f0";
                 }); 
             }
             if (ms8 === "LOCK") {
                 document.getElementById("miss8").style.backgroundColor = "#7f7f7f";
             } else if (pt6 * pt7 * (pt8 + 1) * pt9 * pt10 >= 200 && ms8 !== "LOCK") {
                 document.querySelectorAll(".reach8").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
+                    element.style.backgroundColor = "#0f0";
                 }); 
             }
             if (ms9 === "LOCK") {
                 document.getElementById("miss9").style.backgroundColor = "#7f7f7f";
             } else if (pt6 * pt7 * pt8 * (pt9 + 1) * pt10 >= 200 && ms9 !== "LOCK") {
                 document.querySelectorAll(".reach9").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
+                    element.style.backgroundColor = "#0f0";
                 }); 
             }
             if (ms10 === "LOCK") {
                 document.getElementById("miss10").style.backgroundColor = "#7f7f7f";
             } else if (pt6 * pt7 * pt8 * pt9 * (pt10 + 1) >= 200 && ms10 !== "LOCK") {
                 document.querySelectorAll(".reach10").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
+                    element.style.backgroundColor = "#0f0";
                 }); 
             }
         }
         if (tm1p >= 200 || (ms6 == "LOCK" && ms7 == "LOCK" && ms8 == "LOCK" && ms9 == "LOCK" && ms10 == "LOCK")) {
             tm1p = 200
                 document.querySelectorAll(".win1, .reach1, .reach2, .reach3, .reach4, .reach5").forEach(element => {
-                element.style.backgroundColor = "#0f0";
+                element.style.backgroundColor = "#ff0";
             });
         }
         document.getElementById("team1point").textContent = tm1p;
         if (tm2p >= 200 || (ms1 == "LOCK" && ms2 == "LOCK" && ms3 == "LOCK" && ms4 == "LOCK" && ms5 == "LOCK")) {
             tm2p = 200
             document.querySelectorAll(".win2, .reach6, .reach7, .reach8, .reach9, .reach10").forEach(element => {
-                element.style.backgroundColor = "#0f0";
+                element.style.backgroundColor = "#ff0";
             });
         }
         document.getElementById("team2point").textContent = tm2p;

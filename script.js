@@ -675,6 +675,7 @@ document.addEventListener("keydown", (event) => {
         document.getElementById("miss8").textContent = ms8;
         document.getElementById("miss9").textContent = ms9;
         document.getElementById("miss10").textContent = ms10;
+        document.getElementById("limitquestion").textContent = limitquestion;
         pushdowned = 1;
         if (limitquestion == 0) {
             if (tm1p >= tm2p) {

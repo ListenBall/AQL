@@ -221,7 +221,6 @@ let templist = [];
 const qwert = ["q", "w", "e", "r", "t"];
 const yuiop = ["y", "u", "i", "o", "p"];
 let limitquestion = 40;
-document.getElementById("limitquestion").textContent = limitquestion;
 // 点数計算
 document.addEventListener("keydown", (event) => {
     if (pushdowned == 0 && event.target.tagName != "TD") {
@@ -675,7 +674,6 @@ document.addEventListener("keydown", (event) => {
         document.getElementById("miss8").textContent = ms8;
         document.getElementById("miss9").textContent = ms9;
         document.getElementById("miss10").textContent = ms10;
-        document.getElementById("limitquestion").textContent = limitquestion;
         pushdowned = 1;
         if (limitquestion == 0) {
             if (tm1p >= tm2p) {

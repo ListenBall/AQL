@@ -221,6 +221,7 @@ let templist = [];
 const qwert = ["q", "w", "e", "r", "t"];
 const yuiop = ["y", "u", "i", "o", "p"];
 let limitquestion = 40;
+document.getElementById("limitquestion"); = limitquestion;
 // 点数計算
 document.addEventListener("keydown", (event) => {
     if (pushdowned == 0 && event.target.tagName != "TD") {

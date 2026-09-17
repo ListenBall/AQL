@@ -1,24 +1,5 @@
 // 名前入力
-const grade1 = document.getElementById("grade1");
-const grade2 = document.getElementById("grade2");
-const grade3 = document.getElementById("grade3");
-const grade4 = document.getElementById("grade4");
-const grade5 = document.getElementById("grade5");
-const grade6 = document.getElementById("grade6");
-const grade7 = document.getElementById("grade7");
-const grade8 = document.getElementById("grade8");
-const grade9 = document.getElementById("grade9");
-const grade10 = document.getElementById("grade10");
-const grade11 = document.getElementById("grade11");
-const grade12 = document.getElementById("grade12");
-const grade13 = document.getElementById("grade13");
-const grade14 = document.getElementById("grade14");
-const grade15 = document.getElementById("grade15");
-const grade16 = document.getElementById("grade16");
-const grade17 = document.getElementById("grade17");
-const grade18 = document.getElementById("grade18");
-const grade19 = document.getElementById("grade19");
-const grade20 = document.getElementById("grade20");
+const plyrgrd = [document.getElementById("grade1").value, document.getElementById("grade2").value, document.getElementById("grade3").value, document.getElementById("grade4").value, document.getElementById("grade5").value, document.getElementById("grade6").value, document.getElementById("grade7").value, document.getElementById("grade8").value, document.getElementById("grade9").value, document.getElementById("grade10").value, document.getElementById("grade11").value, document.getElementById("grade12").value, document.getElementById("grade13").value, document.getElementById("grade14").value, document.getElementById("grade15").value, document.getElementById("grade16").value, document.getElementById("grade17").value, document.getElementById("grade18").value, document.getElementById("grade19").value, document.getElementById("grade20").value];
 const nameinput = [document.getElementById("pl1"), document.getElementById("pl2"), document.getElementById("pl3"), document.getElementById("pl4"), document.getElementById("pl5"), document.getElementById("pl6"), document.getElementById("pl7"), document.getElementById("pl8"), document.getElementById("pl9"), document.getElementById("pl10"), document.getElementById("pl11"), document.getElementById("pl12"), document.getElementById("pl13"), document.getElementById("pl14"), document.getElementById("pl15"), document.getElementById("pl16"), document.getElementById("pl17"), document.getElementById("pl18"), document.getElementById("pl19"), document.getElementById("pl20")];
 document.addEventListener("keydown", (event) => {
     if (event.key === "@" && event.target.tagName != "TD") {
@@ -29,22 +10,22 @@ document.addEventListener("keydown", (event) => {
         let gr2nd = [];
         let gr3rd = [];
         for (let i = 0; i < 20; i++) {
-            if ([grade1.value, grade2.value, grade3.value, grade4.value, grade5.value, grade6.value, grade7.value, grade8.value, grade9.value, grade10.value, grade11.value, grade12.value, grade13.value, grade14.value, grade15.value, grade16.value, grade17.value, grade18.value, grade19.value, grade20.value][i] === "0" && nameinput[i].textContent !== "") {
+            if (plyrgrd[i] === "0" && nameinput[i].textContent !== "") {
                 gr0th.push(i);
             }
         }
         for (let i = 0; i < 20; i++) {
-            if ([grade1.value, grade2.value, grade3.value, grade4.value, grade5.value, grade6.value, grade7.value, grade8.value, grade9.value, grade10.value, grade11.value, grade12.value, grade13.value, grade14.value, grade15.value, grade16.value, grade17.value, grade18.value, grade19.value, grade20.value][i] === "1" && nameinput[i].textContent !== "") {
+            if (plyrgrd[i] === "1" && nameinput[i].textContent !== "") {
                 gr1st.push(i);
             }
         }
         for (let i = 0; i < 20; i++) {
-            if ([grade1.value, grade2.value, grade3.value, grade4.value, grade5.value, grade6.value, grade7.value, grade8.value, grade9.value, grade10.value, grade11.value, grade12.value, grade13.value, grade14.value, grade15.value, grade16.value, grade17.value, grade18.value, grade19.value, grade20.value][i] === "2" && nameinput[i].textContent !== "") {
+            if (plyrgrd[i] === "2" && nameinput[i].textContent !== "") {
                 gr2nd.push(i);
             }
         }
         for (let i = 0; i < 20; i++) {
-            if ([grade1.value, grade2.value, grade3.value, grade4.value, grade5.value, grade6.value, grade7.value, grade8.value, grade9.value, grade10.value, grade11.value, grade12.value, grade13.value, grade14.value, grade15.value, grade16.value, grade17.value, grade18.value, grade19.value, grade20.value][i] === "3" && nameinput[i].textContent !== "") {
+            if (plyrgrd[i] === "3" && nameinput[i].textContent !== "") {
                 gr3rd.push(i);
             }
         }

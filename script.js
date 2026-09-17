@@ -1,23 +1,4 @@
 // 名前入力
-const player1 = document.getElementById("player1");
-const player2 = document.getElementById("player2");
-const player3 = document.getElementById("player3");
-const player4 = document.getElementById("player4");
-const player5 = document.getElementById("player5");
-const player6 = document.getElementById("player6");
-const player7 = document.getElementById("player7");
-const player8 = document.getElementById("player8");
-const player9 = document.getElementById("player9");
-const player10 = document.getElementById("player10");
-const player11 = document.getElementById("player11");
-const player12 = document.getElementById("player12");
-const player13 = document.getElementById("player13");
-const player15 = document.getElementById("player15");
-const player16 = document.getElementById("player16");
-const player17 = document.getElementById("player17");
-const player18 = document.getElementById("player18");
-const player19 = document.getElementById("player19");
-const player20 = document.getElementById("player20");
 const grade1 = document.getElementById("grade1");
 const grade2 = document.getElementById("grade2");
 const grade3 = document.getElementById("grade3");
@@ -41,8 +22,8 @@ const grade20 = document.getElementById("grade20");
 const nameinput = [document.getElementById("pl1"), document.getElementById("pl2"), document.getElementById("pl3"), document.getElementById("pl4"), document.getElementById("pl5"), document.getElementById("pl6"), document.getElementById("pl7"), document.getElementById("pl8"), document.getElementById("pl9"), document.getElementById("pl10"), document.getElementById("pl11"), document.getElementById("pl12"), document.getElementById("pl13"), document.getElementById("pl14"), document.getElementById("pl15"), document.getElementById("pl16"), document.getElementById("pl17"), document.getElementById("pl18"), document.getElementById("pl19"), document.getElementById("pl20")];
 document.addEventListener("keydown", (event) => {
     if (event.key === "@" && event.target.tagName != "TD") {
-        let team1name = [player5, player4, player3, player2, player1, player15, player14, player13, player12, player11];
-        let team2name = [player6, player7, player8, player9, player10, player16, player17, player18, player19, player20];
+        let team1name = [document.getElementById("player5"), document.getElementById("player4"), document.getElementById("player3"), document.getElementById("player2"), document.getElementById("player1"), document.getElementById("player15"), document.getElementById("player14"), document.getElementById("player13"), document.getElementById("player12"), document.getElementById("player11")];
+        let team2name = [document.getElementById("player6"), document.getElementById("player7"), document.getElementById("player8"), document.getElementById("player9"), document.getElementById("player10"), document.getElementById("player16"), document.getElementById("player17"), document.getElementById("player18"), document.getElementById("player19"), document.getElementById("player20")];
         let gr0th = [];
         let gr1st = [];
         let gr2nd = [];

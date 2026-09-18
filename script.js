@@ -1,111 +1,35 @@
 // 名前入力
-const plyrgrd = [document.getElementById("grade1").value, document.getElementById("grade2").value, document.getElementById("grade3").value, document.getElementById("grade4").value, document.getElementById("grade5").value, document.getElementById("grade6").value, document.getElementById("grade7").value, document.getElementById("grade8").value, document.getElementById("grade9").value, document.getElementById("grade10").value, document.getElementById("grade11").value, document.getElementById("grade12").value, document.getElementById("grade13").value, document.getElementById("grade14").value, document.getElementById("grade15").value, document.getElementById("grade16").value, document.getElementById("grade17").value, document.getElementById("grade18").value, document.getElementById("grade19").value, document.getElementById("grade20").value];
+const plyrgrd = [document.getElementById("grade1"), document.getElementById("grade2"), document.getElementById("grade3"), document.getElementById("grade4"), document.getElementById("grade5"), document.getElementById("grade6"), document.getElementById("grade7"), document.getElementById("grade8"), document.getElementById("grade9"), document.getElementById("grade10"), document.getElementById("grade11"), document.getElementById("grade12"), document.getElementById("grade13"), document.getElementById("grade14"), document.getElementById("grade15"), document.getElementById("grade16"), document.getElementById("grade17"), document.getElementById("grade18"), document.getElementById("grade19"), document.getElementById("grade20")];
 const nameinput = [document.getElementById("pl1"), document.getElementById("pl2"), document.getElementById("pl3"), document.getElementById("pl4"), document.getElementById("pl5"), document.getElementById("pl6"), document.getElementById("pl7"), document.getElementById("pl8"), document.getElementById("pl9"), document.getElementById("pl10"), document.getElementById("pl11"), document.getElementById("pl12"), document.getElementById("pl13"), document.getElementById("pl14"), document.getElementById("pl15"), document.getElementById("pl16"), document.getElementById("pl17"), document.getElementById("pl18"), document.getElementById("pl19"), document.getElementById("pl20")];
 document.addEventListener("keydown", (event) => {
     if (event.key === "@" && event.target.tagName != "TD") {
-        let team1name = [document.getElementById("player5"), document.getElementById("player4"), document.getElementById("player3"), document.getElementById("player2"), document.getElementById("player1"), document.getElementById("player15"), document.getElementById("player14"), document.getElementById("player13"), document.getElementById("player12"), document.getElementById("player11")];
-        let team2name = [document.getElementById("player6"), document.getElementById("player7"), document.getElementById("player8"), document.getElementById("player9"), document.getElementById("player10"), document.getElementById("player16"), document.getElementById("player17"), document.getElementById("player18"), document.getElementById("player19"), document.getElementById("player20")];
-        let gr0th = [];
-        let gr1st = [];
-        let gr2nd = [];
-        let gr3rd = [];
-        for (let i = 0; i < 20; i++) {
-            if (plyrgrd[i] === "0" && nameinput[i].textContent !== "") {
-                gr0th.push(i);
+        let playernames = [[document.getElementById("player5"), document.getElementById("player4"), document.getElementById("player3"), document.getElementById("player2"), document.getElementById("player1"), document.getElementById("player15"), document.getElementById("player14"), document.getElementById("player13"), document.getElementById("player12"), document.getElementById("player11")], [document.getElementById("player6"), document.getElementById("player7"), document.getElementById("player8"), document.getElementById("player9"), document.getElementById("player10"), document.getElementById("player16"), document.getElementById("player17"), document.getElementById("player18"), document.getElementById("player19"), document.getElementById("player20")]];
+        let grades = [[], [], [], []];
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 20; j++) {
+                if (plyrgrd[j].value == i && nameinput[j].textContent !== "") {
+                    grades[i].push(j);
+                }
             }
         }
-        for (let i = 0; i < 20; i++) {
-            if (plyrgrd[i] === "1" && nameinput[i].textContent !== "") {
-                gr1st.push(i);
+        for (let i = 0; i < 2; i++) {
+            for (let j = 0; j < 10; j++) {
+                playernames[i][j].textContent = "";
             }
         }
-        for (let i = 0; i < 20; i++) {
-            if (plyrgrd[i] === "2" && nameinput[i].textContent !== "") {
-                gr2nd.push(i);
+        for (let i = 3; i > -1; i--) {
+            let loop = grades[i].length;
+            for (let j = 0; j < loop; j++) {
+                let rnd = Math.floor(Math.random() * grades[i].length);
+                if (playernames[0].length > playernames[1].length || (playernames[0].length == playernames[1].length && Math.random() < 0.5)) {
+                    playernames[0][0].textContent = nameinput[grades[i][rnd]].textContent;
+                    playernames[0].shift();
+                } else {
+                    playernames[1][0].textContent = nameinput[grades[i][rnd]].textContent;
+                    playernames[1].shift();
+                }
+                grades[i].splice(rnd,1);
             }
-        }
-        for (let i = 0; i < 20; i++) {
-            if (plyrgrd[i] === "3" && nameinput[i].textContent !== "") {
-                gr3rd.push(i);
-            }
-        }
-        for (let i = 0; i < 10; i++) {
-            team1name[i].textContent = "";
-        }
-        for (let i = 0; i < 10; i++) {
-            team2name[i].textContent = "";
-        }
-        let loop = gr3rd.length;
-        for (let i = 0; i < loop; i++) {
-            let rnd = Math.floor(Math.random() * gr3rd.length);
-            if (team1name.length > team2name.length) {
-                team1name[0].textContent = nameinput[gr3rd[rnd]].textContent;
-                team1name.shift();
-            } else if (team1name.length < team2name.length) {
-                team2name[0].textContent = nameinput[gr3rd[rnd]].textContent;
-                team2name.shift();
-            } else if (Math.random() < 0.5) {
-                team1name[0].textContent = nameinput[gr3rd[rnd]].textContent;
-                team1name.shift();
-            } else {
-                team2name[0].textContent = nameinput[gr3rd[rnd]].textContent;
-                team2name.shift();
-            }
-            gr3rd.splice(rnd,1);
-        }
-        loop = gr2nd.length;
-        for (let i = 0; i < loop; i++) {
-            let rnd = Math.floor(Math.random() * gr2nd.length);
-            if (team1name.length > team2name.length) {
-                team1name[0].textContent = nameinput[gr2nd[rnd]].textContent;
-                team1name.shift();
-            } else if (team1name.length < team2name.length) {
-                team2name[0].textContent = nameinput[gr2nd[rnd]].textContent;
-                team2name.shift();
-            } else if (Math.random() < 0.5) {
-                team1name[0].textContent = nameinput[gr2nd[rnd]].textContent;
-                team1name.shift();
-            } else {
-                team2name[0].textContent = nameinput[gr2nd[rnd]].textContent;
-                team2name.shift();
-            }
-            gr2nd.splice(rnd,1);
-        }
-        loop = gr1st.length;
-        for (let i = 0; i < loop; i++) {
-            let rnd = Math.floor(Math.random() * gr1st.length);
-            if (team1name.length > team2name.length) {
-                team1name[0].textContent = nameinput[gr1st[rnd]].textContent;
-                team1name.shift();
-            } else if (team1name.length < team2name.length) {
-                team2name[0].textContent = nameinput[gr1st[rnd]].textContent;
-                team2name.shift();
-            } else if (Math.random() < 0.5) {
-                team1name[0].textContent = nameinput[gr1st[rnd]].textContent;
-                team1name.shift();
-            } else {
-                team2name[0].textContent = nameinput[gr1st[rnd]].textContent;
-                team2name.shift();
-            }
-            gr1st.splice(rnd,1);
-        }
-        loop = gr0th.length;
-        for (let i = 0; i < loop; i++) {
-            let rnd = Math.floor(Math.random() * gr0th.length);
-            if (team1name.length > team2name.length) {
-                team1name[0].textContent = nameinput[gr0th[rnd]].textContent;
-                team1name.shift();
-            } else if (team1name.length < team2name.length) {
-                team2name[0].textContent = nameinput[gr0th[rnd]].textContent;
-                team2name.shift();
-            } else if (Math.random() < 0.5) {
-                team1name[0].textContent = nameinput[gr0th[rnd]].textContent;
-                team1name.shift();
-            } else {
-                team2name[0].textContent = nameinput[gr0th[rnd]].textContent;
-                team2name.shift();
-            }
-            gr0th.splice(rnd,1);
         }
     }
 });

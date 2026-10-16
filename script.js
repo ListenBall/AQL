@@ -1,648 +1,158 @@
 // 名前入力
-const plyrgrd = [document.getElementById("grade1"), document.getElementById("grade2"), document.getElementById("grade3"), document.getElementById("grade4"), document.getElementById("grade5"), document.getElementById("grade6"), document.getElementById("grade7"), document.getElementById("grade8"), document.getElementById("grade9"), document.getElementById("grade10"), document.getElementById("grade11"), document.getElementById("grade12"), document.getElementById("grade13"), document.getElementById("grade14"), document.getElementById("grade15"), document.getElementById("grade16"), document.getElementById("grade17"), document.getElementById("grade18"), document.getElementById("grade19"), document.getElementById("grade20")];
-const nameinput = [document.getElementById("pl1"), document.getElementById("pl2"), document.getElementById("pl3"), document.getElementById("pl4"), document.getElementById("pl5"), document.getElementById("pl6"), document.getElementById("pl7"), document.getElementById("pl8"), document.getElementById("pl9"), document.getElementById("pl10"), document.getElementById("pl11"), document.getElementById("pl12"), document.getElementById("pl13"), document.getElementById("pl14"), document.getElementById("pl15"), document.getElementById("pl16"), document.getElementById("pl17"), document.getElementById("pl18"), document.getElementById("pl19"), document.getElementById("pl20")];
 document.addEventListener("keydown", (event) => {
     if (event.key === "@" && event.target.tagName != "TD") {
-        let playernames = [[document.getElementById("player5"), document.getElementById("player4"), document.getElementById("player3"), document.getElementById("player2"), document.getElementById("player1"), document.getElementById("player15"), document.getElementById("player14"), document.getElementById("player13"), document.getElementById("player12"), document.getElementById("player11")], [document.getElementById("player6"), document.getElementById("player7"), document.getElementById("player8"), document.getElementById("player9"), document.getElementById("player10"), document.getElementById("player16"), document.getElementById("player17"), document.getElementById("player18"), document.getElementById("player19"), document.getElementById("player20")]];
+        let playernums = [[4, 3, 2, 1, 0, 10, 11, 12, 13, 14], [5, 6, 7, 8, 9, 19, 18, 17, 16, 15]];
         let grades = [[], [], [], []];
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 20; j++) {
-                if (plyrgrd[j].value == i && nameinput[j].textContent !== "") {
+                if (document.getElementById("grade" + j).value == i && document.getElementById("pl" + j).textContent !== "") {
                     grades[i].push(j);
                 }
             }
         }
         for (let i = 0; i < 2; i++) {
             for (let j = 0; j < 10; j++) {
-                playernames[i][j].textContent = "";
+                document.getElementById("player" + playernums[i][j]).textContent = "";
             }
         }
         for (let i = 3; i > -1; i--) {
             let loop = grades[i].length;
             for (let j = 0; j < loop; j++) {
                 let rnd = Math.floor(Math.random() * grades[i].length);
-                if (playernames[0].length > playernames[1].length || (playernames[0].length == playernames[1].length && Math.random() < 0.5)) {
-                    playernames[0][0].textContent = nameinput[grades[i][rnd]].textContent;
-                    playernames[0].shift();
-                } else {
-                    playernames[1][0].textContent = nameinput[grades[i][rnd]].textContent;
-                    playernames[1].shift();
-                }
+                document.getElementById("player" + playernums[Number(playernums[0].length < playernums[1].length || (playernums[0].length == playernums[1].length && Math.random() < 0.5))].shift).textContent = document.getElementById("pl" + grades[i][rnd]).textContent;
                 grades[i].splice(rnd,1);
             }
         }
     }
 });
-// 変数宣言
-let pt1 = 1;
-document.getElementById("point1").textContent = pt1;
-let pt2 = 1;
-document.getElementById("point2").textContent = pt2;
-let pt3 = 1;
-document.getElementById("point3").textContent = pt3;
-let pt4 = 1;
-document.getElementById("point4").textContent = pt4;
-let pt5 = 1;
-document.getElementById("point5").textContent = pt5;
-let pt6 = 1;
-document.getElementById("point6").textContent = pt6;
-let pt7 = 1;
-document.getElementById("point7").textContent = pt7;
-let pt8 = 1;
-document.getElementById("point8").textContent = pt8;
-let pt9 = 1;
-document.getElementById("point9").textContent = pt9;
-let pt10 = 1;
-document.getElementById("point10").textContent = pt10;
-let ms1 = "";
-document.getElementById("miss1").textContent = ms1;
-let ms2 = "";
-document.getElementById("miss2").textContent = ms2;
-let ms3 = "";
-document.getElementById("miss3").textContent = ms3;
-let ms4 = "";
-document.getElementById("miss4").textContent = ms4;
-let ms5 = "";
-document.getElementById("miss5").textContent = ms5;
-let ms6 = "";
-document.getElementById("miss6").textContent = ms6;
-let ms7 = "";
-document.getElementById("miss7").textContent = ms7;
-let ms8 = "";
-document.getElementById("miss8").textContent = ms8;
-let ms9 = "";
-document.getElementById("miss9").textContent = ms9;
-let ms10 = "";
-document.getElementById("miss10").textContent = ms10;
-let tm1p = 1;
-document.getElementById("team1point").textContent = tm1p;
-let tm2p = 1;
-document.getElementById("team2point").textContent = tm2p;
-let pushdowned = 0;
-let resetcounter = 0;
+//初期表示
+let keys = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],[["q", "w", "e", "r", "t"],["y", "u", "i", "o", "p"]]];
+let resetlimit = 3;
+for (let i = 0; i < 10; i++) {
+    document.getElementById("point" + keys[0][i]).textContent = 1;
+}
+for (let i = 0; i < 2; i++) {
+    document.getElementById("team" + i + "point").textContent = 1;
+}
+//点数計算
 let history = [];
-let listnum = 0;
-let templist = [];
-const qwert = ["q", "w", "e", "r", "t"];
-const yuiop = ["y", "u", "i", "o", "p"];
-let limitquestion = 40;
-// 点数計算
+let pushdowned = 0;
 document.addEventListener("keydown", (event) => {
-    if (pushdowned == 0 && event.target.tagName != "TD") {
-        if (limitquestion != 0 && tm1p < 200 && tm2p < 200) {
-            if (!((["1", "q"].includes(event.key) && ms1 === "LOCK") || (["2", "w"].includes(event.key) && ms2 === "LOCK") || (["3", "e"].includes(event.key) && ms3 === "LOCK") || (["4", "r"].includes(event.key) && ms4 === "LOCK") || (["5", "t"].includes(event.key) && ms5 === "LOCK") || (["6", "y"].includes(event.key) && ms6 === "LOCK") || (["7", "u"].includes(event.key) && ms7 === "LOCK") || (["8", "i"].includes(event.key) && ms8 === "LOCK") || (["9", "o"].includes(event.key) && ms9 === "LOCK") || (["0", "p"].includes(event.key) && ms10 === "LOCK"))) {
-                // 点数加算
-                if (event.key === "1") {
-                    limitquestion = --limitquestion;
-                    pt1 = ++pt1;
-                    history.push("1");
+    if (pushdowned === 0 && event.target.tagName !== "TD") {
+        if (![document.getElementById("team0point").textContent, document.getElementById("team1point").textContent].includes("200") && history.length != 40) {
+            //正答
+            for (let i = 0; i < 10; i++) {
+                if (event.key === keys[0][i] && document.getElementById("miss" + i).textContent !== "LOCK") {
+                    history.push(event.key);
                 }
-                if (event.key === "2") {
-                    limitquestion = --limitquestion;
-                    pt2 = ++pt2;
-                    history.push("2");
-                }
-                if (event.key === "3") {
-                    limitquestion = --limitquestion;
-                    pt3 = ++pt3;
-                    history.push("3");
-                }
-                if (event.key === "4") {
-                    limitquestion = --limitquestion;
-                    pt4 = ++pt4;
-                    history.push("4");
-                }
-                if (event.key === "5") {
-                    limitquestion = --limitquestion;
-                    pt5 = ++pt5;
-                    history.push("5");
-                }
-                if (event.key === "6") {
-                    limitquestion = --limitquestion;
-                    pt6 = ++pt6;
-                    history.push("6");
-                }
-                if (event.key === "7") {
-                    limitquestion = --limitquestion;
-                    pt7 = ++pt7;
-                    history.push("7");
-                }
-                if (event.key === "8") {
-                    limitquestion = --limitquestion;
-                    pt8 = ++pt8;
-                    history.push("8");
-                }
-                if (event.key === "9") {
-                    limitquestion = --limitquestion;
-                    pt9 = ++pt9;
-                    history.push("9");
-                }
-                if (event.key === "0") {
-                    limitquestion = --limitquestion;
-                    pt10 = ++pt10;
-                    history.push("0");
-                }
-                //ミス処理
-                if (qwert.includes(event.key)) {
-                    limitquestion = --limitquestion;
-                    if (ms6 === "LOCK") {
-                        ms6 = "✕";
-                    }
-                    if (ms7 === "LOCK") {
-                        ms7 = "✕";
-                    }
-                    if (ms8 === "LOCK") {
-                        ms8 = "✕";
-                    }
-                    if (ms9 === "LOCK") {
-                        ms9 = "✕";
-                    }
-                    if (ms10 === "LOCK") {
-                        ms10 = "✕";
-                    }
-                    if (event.key === "q") {
-                        pt1 = 1;
-                        history.push("q");
-                        if (ms1 === "") {
-                            ms1 = "✕";
-                        } else {
-                            ms1 = "LOCK";
-                        }
-                    }else if (event.key === "w") {
-                        pt2 = 1;
-                        history.push("w");
-                        if (ms2 === "") {
-                            ms2 = "✕";
-                        } else {
-                            ms2 = "LOCK";
-                        }
-                    }else if (event.key === "e") {
-                        pt3 = 1;
-                        history.push("e");
-                        if (ms3 === "") {
-                            ms3 = "✕";
-                        } else {
-                            ms3 = "LOCK";
-                        }
-                    }else if (event.key === "r") {
-                        pt4 = 1;
-                        history.push("r");
-                        if (ms4 === "") {
-                            ms4 = "✕";
-                        } else {
-                            ms4 = "LOCK";
-                        }
-                    }else if (event.key === "t") {
-                        pt5 = 1;
-                        history.push("t");
-                        if (ms5 === "") {
-                            ms5 = "✕";
-                        } else {
-                            ms5 = "LOCK";
-                        }
-                    }
-                }
-                if (yuiop.includes(event.key)) {
-                    limitquestion = --limitquestion;
-                    if (ms1 === "LOCK") {
-                        ms1 = "✕";
-                    }
-                    if (ms2 === "LOCK") {
-                        ms2 = "✕";
-                    }
-                    if (ms3 === "LOCK") {
-                        ms3 = "✕";
-                    }
-                    if (ms4 === "LOCK") {
-                        ms4 = "✕";
-                    }
-                    if (ms5 === "LOCK") {
-                        ms5 = "✕";
-                    }
-                    if (event.key === "y") {
-                        pt6 = 1;
-                        history.push("y");
-                        if (ms6 === "") {
-                           ms6 = "✕";
-                        } else {
-                            ms6 = "LOCK";
-                        }
-                    }else if (event.key === "u") {
-                        pt7 = 1;
-                        history.push("u");
-                        if (ms7 === "") {
-                            ms7 = "✕";
-                        } else {
-                            ms7 = "LOCK";
-                        }
-                    }else if (event.key === "i") {
-                        pt8 = 1;
-                        history.push("i");
-                        if (ms8 === "") {
-                            ms8 = "✕";
-                        } else {
-                            ms8 = "LOCK";
-                        }
-                    }else if (event.key === "o") {
-                        pt9 = 1;
-                        history.push("o");
-                        if (ms9 === "") {
-                            ms9 = "✕";
-                        } else {
-                            ms9 = "LOCK";
-                        }
-                    }else if (event.key === "p") {
-                        pt10 = 1;
-                        history.push("p");
-                        if (ms10 === "") {
-                            ms10 = "✕";
-                        } else {
-                            ms10 = "LOCK";
-                        }
+            }
+            //誤答
+            for (let i = 0; i < 2; i++) {
+                for (let j = 0; j < 5; j++) {
+                    if (event.key === keys[1][i][j] && document.getElementById("miss" + (i * 5 + j)).textContent !== "LOCK") {
+                        history.push(event.key);
                     }
                 }
             }
             if (event.key === "Enter") {
-                limitquestion = --limitquestion;
                 history.push("Enter");
             }
         }
-        //undo処理
         if (event.key === "-") {
-            limitquestion = ++limitquestion;
-            if (history.at(-1) === "1") {
-                pt1 = --pt1;
-                history.pop();
-            } else if (history.at(-1) === "2") {
-                pt2 = --pt2;
-                history.pop();
-            } else if (history.at(-1) === "3") {
-                pt3 = --pt3;
-                history.pop();
-            } else if (history.at(-1) === "4") {
-                pt4 = --pt4;
-                history.pop();
-            } else if (history.at(-1) === "5") {
-                pt5 = --pt5;
-                history.pop();
-            } else if (history.at(-1) === "6") {
-                pt6 = --pt6;
-                history.pop();
-            } else if (history.at(-1) === "7") {
-                pt7 = --pt7;
-                history.pop();
-            } else if (history.at(-1) === "8") {
-                pt8 = --pt8;
-                history.pop();
-            } else if (history.at(-1) === "9") {
-                pt9 = --pt9;
-                history.pop();
-            } else if (history.at(-1) === "0") {
-                pt10 = --pt10;
-                history.pop();
-            } else if (qwert.includes(history.at(-1))) {
-                if (history.at(-1) === "q") {
-                    history.pop();
-                    listnum = history.lastIndexOf("q");
-                    templist = history.slice(++listnum);
-                    pt1 = templist.filter(element => element === "1").length + 1;
-                    if (listnum == 0) {
-                        ms1 = "";
-                    } else {
-                        ms1 = "✕";
-                    }
-                } else if (history.at(-1) === "w") {
-                    history.pop();
-                    listnum = history.lastIndexOf("w");
-                    templist = history.slice(++listnum);
-                    pt2 = templist.filter(element => element === "2").length + 1;
-                    if (listnum == 0) {
-                        ms2 = "";
-                    } else {
-                        ms2 = "✕";
-                    }
-                } else if (history.at(-1) === "e") {
-                    history.pop();
-                    listnum = history.lastIndexOf("e");
-                    templist = history.slice(++listnum);
-                    pt3 = templist.filter(element => element === "3").length + 1;
-                    if (listnum == 0) {
-                        ms3 = "";
-                    } else {
-                        ms3 = "✕";
-                    }
-                } else if (history.at(-1) === "r") {
-                    history.pop();
-                    listnum = history.lastIndexOf("r");
-                    templist = history.slice(++listnum);
-                    pt4 = templist.filter(element => element === "4").length + 1;
-                    if (listnum == 0) {
-                        ms4 = "";
-                    } else {
-                        ms4 = "✕";
-                    }
-                } else {
-                    history.pop();
-                    listnum = history.lastIndexOf("t");
-                    templist = history.slice(++listnum);
-                    pt5 = templist.filter(element => element === "5").length + 1;
-                    if (listnum == 0) {
-                        ms5 = "";
-                    } else {
-                        ms5 = "✕";
-                    }
-                }
-                if (yuiop.some(element => templist.includes(element))) {
-                    if (templist.includes("y")) {
-                        if (history.filter(element => element === "y").length >= 2 && !qwert.some(element => templist.slice(templist.lastIndexOf("y") + 1).includes(element))) {
-                            ms6 = "LOCK";
-                        } else {
-                            ms6 = "✕";
-                        }
-                    }
-                    if (templist.includes("u")) {
-                        if (history.filter(element => element === "u").length >= 2 && !qwert.some(element => templist.slice(templist.lastIndexOf("u") + 1).includes(element))) {
-                            ms7 = "LOCK";
-                        } else {
-                            ms7 = "✕";
-                        }
-                    }
-                    if (templist.includes("i")) {
-                        if (history.filter(element => element === "i").length >= 2 && !qwert.some(element => templist.slice(templist.lastIndexOf("i") + 1).includes(element))) {
-                            ms8 = "LOCK";
-                        } else {
-                            ms8 = "✕";
-                        }
-                    }
-                    if (templist.includes("o")) {
-                        if (history.filter(element => element === "o").length >= 2 && !qwert.some(element => templist.slice(templist.lastIndexOf("o") + 1).includes(element))) {
-                            ms9 = "LOCK";
-                        } else {
-                            ms9 = "✕";
-                        }
-                    }
-                    if (templist.includes("p")) {
-                        if (history.filter(element => element === "p").length >= 2 && !qwert.some(element => templist.slice(templist.lastIndexOf("p") + 1).includes(element))) {
-                            ms10 = "LOCK";
-                        } else {
-                            ms10 = "✕";
-                        }
-                    }
-                }
-            } else if (yuiop.includes(history.at(-1))) {
-                if (history.at(-1) === "y") {
-                    history.pop();
-                    listnum = history.lastIndexOf("y");
-                    templist = history.slice(++listnum);
-                    pt6 = templist.filter(element => element === "6").length + 1;
-                    if (listnum == 0) {
-                        ms6 = "";
-                    } else {
-                        ms6 = "✕";
-                    }
-                } else if (history.at(-1) === "u") {
-                    history.pop();
-                    listnum = history.lastIndexOf("u");
-                    templist = history.slice(++listnum);
-                    pt7 = templist.filter(element => element === "7").length + 1;
-                    if (listnum == 0) {
-                        ms7 = "";
-                    } else {
-                    ms7 = "✕";
-                    }
-                } else if (history.at(-1) === "i") {
-                    history.pop();
-                    listnum = history.lastIndexOf("i");
-                    templist = history.slice(++listnum);
-                    pt8 = templist.filter(element => element === "8").length + 1;
-                    if (listnum == 0) {
-                        ms8 = "";
-                    } else {
-                        ms8 = "✕";
-                    }
-                } else if (history.at(-1) === "o") {
-                    history.pop();
-                    listnum = history.lastIndexOf("o");
-                    templist = history.slice(++listnum);
-                    pt9 = templist.filter(element => element === "9").length + 1;
-                    if (listnum == 0) {
-                        ms9 = "";
-                    } else {
-                        ms9 = "✕";
-                    }
-                } else if (history.at(-1) === "p") {
-                    history.pop();
-                    listnum = history.lastIndexOf("p");
-                    templist = history.slice(++listnum);
-                    pt10 = templist.filter(element => element === "0").length + 1;
-                    if (listnum == 0) {
-                        ms10 = "";
-                    } else {
-                        ms10 = "✕";
-                    }
-                }
-                if (qwert.some(element => templist.includes(element))) {
-                    if (templist.includes("q")) {
-                        if (history.filter(element => element === "q").length >= 2 && !yuiop.some(element => templist.slice(templist.lastIndexOf("q") + 1).includes(element))) {
-                            ms1 = "LOCK";
-                        } else {
-                            ms1 = "✕";
-                        }
-                    }
-                    if (templist.includes("w")) {
-                        if (history.filter(element => element === "w").length >= 2 && !yuiop.some(element => templist.slice(templist.lastIndexOf("w") + 1).includes(element))) {
-                            ms2 = "LOCK";
-                        } else {
-                            ms2 = "✕";
-                        }
-                    }
-                    if (templist.includes("e")) {
-                        if (history.filter(element => element === "e").length >= 2 && !yuiop.some(element => templist.slice(templist.lastIndexOf("e") + 1).includes(element))) {
-                            ms3 = "LOCK";
-                        } else {
-                            ms3 = "✕";
-                        }
-                    }
-                    if (templist.includes("r")) {
-                        if (history.filter(element => element === "r").length >= 2 && !yuiop.some(element => templist.slice(templist.lastIndexOf("r") + 1).includes(element))) {
-                            ms4 = "LOCK";
-                        } else {
-                            ms4 = "✕";
-                        }
-                    }
-                    if (templist.includes("t")) {
-                        if (history.filter(element => element === "t").length >= 2 && !yuiop.some(element => templist.slice(templist.lastIndexOf("t") + 1).includes(element))) {
-                            ms5 = "LOCK";
-                        } else {
-                            ms5 = "✕";
-                        }
-                    }
-                }
-            } else if (history.at(-1) === "Enter") {
-                history.pop();
-            } else {
-                limitquestion = --limitquestion;
-            }
+            history.pop();
         }
-        //リセット
         if (event.key === " ") {
-            if (resetcounter == 2) {
-                pt1 = 1;
-                pt2 = 1;
-                pt3 = 1;
-                pt4 = 1;
-                pt5 = 1;
-                pt6 = 1;
-                pt7 = 1;
-                pt8 = 1;
-                pt9 = 1;
-                pt10 = 1;
-                ms1 = "";
-                ms2 = "";
-                ms3 = "";
-                ms4 = "";
-                ms5 = "";
-                ms6 = "";
-                ms7 = "";
-                ms8 = "";
-                ms9 = "";
-                ms10 = "";
-                resetcounter = 0;
+            if(--resetlimit === 0) {
                 history = [];
-                limitquestion = 40;
-            } else {
-                resetcounter = ++resetcounter;
             }
         } else {
-            resetcounter = 0;
+            resetlimit = 3;
         }
-        tm1p = pt1 * pt2 * pt3 * pt4 * pt5;
-        tm2p = pt6 * pt7 * pt8 * pt9 * pt10;
-        // 表示更新
-        document.getElementById("point1").textContent = pt1;
-        document.getElementById("point2").textContent = pt2;
-        document.getElementById("point3").textContent = pt3;
-        document.getElementById("point4").textContent = pt4;
-        document.getElementById("point5").textContent = pt5;
-        document.getElementById("point6").textContent = pt6;
-        document.getElementById("point7").textContent = pt7;
-        document.getElementById("point8").textContent = pt8;
-        document.getElementById("point9").textContent = pt9;
-        document.getElementById("point10").textContent = pt10;
-        document.getElementById("miss1").textContent = ms1;
-        document.getElementById("miss2").textContent = ms2;
-        document.getElementById("miss3").textContent = ms3;
-        document.getElementById("miss4").textContent = ms4;
-        document.getElementById("miss5").textContent = ms5;
-        document.getElementById("miss6").textContent = ms6;
-        document.getElementById("miss7").textContent = ms7;
-        document.getElementById("miss8").textContent = ms8;
-        document.getElementById("miss9").textContent = ms9;
-        document.getElementById("miss10").textContent = ms10;
+        //表示リセット
+        for (let i = 0; i < 10; i++) {
+            document.getElementById("point" + i).textContent = 1;
+        }
+        for (let i = 0; i < 10; i++) {
+            document.getElementById("miss" + i).textContent = "";
+        }
+        for (let i = 0; i < 2; i++) {
+            document.querySelectorAll(".win" + i).forEach(element => {
+                element.style.backgroundColor = "#fff";
+            });
+        }
+        for (let i = 0; i < 10; i++) {
+            document.querySelectorAll(".riichi" + i).forEach(element => {
+                element.style.backgroundColor = "#fff";
+            });
+            document.getElementById("miss" + i).style.backgroundColor = "#fff";
+        }
+        //表示更新
+        for (let i = 0; i < history.length; i++) {
+            for (let j = 0; j < 10; j++) {
+                if (history[i] === keys[0][j]) {
+                    ++document.getElementById("point" + (Number(history[i]) + 9) % 10).textContent;
+                }
+            }
+            for (let j = 0; j < 2; j++) {
+                for (let k = 0; k < 5; k++) {
+                    if (history[i] === keys[1][j][k]) {
+                        document.getElementById("point" + (5 * j + k)).textContent = 1;
+                        if (document.getElementById("miss" + (5 * j + k)).textContent === "") {
+                            document.getElementById("miss" + (5 * j + k)).textContent = "✕";
+                        } else {
+                            document.getElementById("miss" + (5 * j + k)).textContent = "LOCK";
+                        }
+                        for (let l = 0; l < 5; l++) {
+                            if (document.getElementById("miss" + (5 - 5 * j + l)).textContent === "LOCK") {
+                                document.getElementById("miss" + (5 - 5 * j + l)).textContent = "✕";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (let i = 0; i < 2; i++) {
+            document.getElementById("team" + i + "point").textContent = 1;
+            for (let j = 0; j < 5; j++) {
+                document.getElementById("team" + i + "point").textContent = document.getElementById("team" + i + "point").textContent * document.getElementById("point" + (i * 5 + j)).textContent;
+            }
+        }
+        for (let i = 0; i < 2; i++) {
+            if (document.getElementById("team" + i + "point").textContent > 200 || [document.getElementById("miss" + (5 - i * 5)).textContent, document.getElementById("miss" + (6 - i * 5)).textContent, document.getElementById("miss" + (7 - i * 5)).textContent, document.getElementById("miss" + (8 - i * 5)).textContent, document.getElementById("miss" + (9 - i * 5)).textContent].every(currentValue => currentValue == "LOCK")) {
+                document.getElementById("team" + i + "point").textContent = 200;
+            }
+        }
+        for (let i = 0; i < 2; i++) {
+            for (let j = 0; j < 5; j++) {
+                let productother = 1;
+                for (let k = j + 1; k < j + 5; k++) {
+                    productother = productother * (document.getElementById("point" + (i * 5 + k % 5)).textContent);
+                }
+                if (Number(document.getElementById("team" + i + "point").textContent) + productother >= 200 && document.getElementById("miss" + (i * 5 + j)).textContent != "LOCK") {
+                    document.querySelectorAll(".riichi" + (5 * i + j)).forEach(element => {
+                        element.style.backgroundColor = "#0f0";
+                    });
+                }
+            }
+        }
+        for (let i = 0; i < 10; i++) {
+            if (document.getElementById("miss" + i).textContent == "LOCK") {
+                document.getElementById("miss" + i).style.backgroundColor = "#7f7f7f";
+            }
+        }
+        for (let i = 0; i < 2; i++) {
+            if (document.getElementById("team" + i + "point").textContent == 200 || (history.length == 40 && document.getElementById("team" + i + "point").textContent >= document.getElementById("team" + (1 - i) + "point").textContent)) {
+                document.querySelectorAll(".win" + i).forEach(element => {
+                    element.style.backgroundColor = "#ff0";
+                });
+                for (let j = 0; j < 5; j++) {
+                    document.querySelectorAll(".riichi" + (5 * i + j)).forEach(element => {
+                        element.style.backgroundColor = "#ff0";
+                    });
+                }
+            }
+        }
         pushdowned = 1;
-        if (limitquestion == 0) {
-            if (tm1p >= tm2p) {
-                document.querySelectorAll(".win1, .reach1, .reach2, .reach3, .reach4, .reach5").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
-                });
-            }
-            if (tm2p >= tm1p) {
-                document.querySelectorAll(".win2, .reach6, .reach7, .reach8, .reach9, .reach10").forEach(element => {
-                    element.style.backgroundColor = "#ff0";
-                });
-            }
-        } else {
-            document.querySelectorAll(".win1, .reach1, .reach2, .reach3, .reach4, .reach5").forEach(element => {
-                element.style.backgroundColor = "#fff";
-            });
-            if (ms1 === "LOCK") {
-                document.getElementById("miss1").style.backgroundColor = "#7f7f7f";
-            } else if ((pt1 + 1) * pt2 * pt3 * pt4 * pt5 >= 200 && ms1 !== "LOCK") {
-                document.querySelectorAll(".reach1").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
-                }); 
-            }
-            if (ms2 === "LOCK") {
-            document.getElementById("miss2").style.backgroundColor = "#7f7f7f";
-            } else if (pt1 * (pt2 + 1) * pt3 * pt4 * pt5 >= 200 && ms2 !== "LOCK") {
-                document.querySelectorAll(".reach2").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
-                }); 
-            }
-            if (ms3 === "LOCK") {
-                document.getElementById("miss3").style.backgroundColor = "#7f7f7f";
-            } else if (pt1 * pt2 * (pt3 + 1) * pt4 * pt5 >= 200 && ms3 !== "LOCK") {
-                document.querySelectorAll(".reach3").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
-                }); 
-            }
-            if (ms4 === "LOCK") {
-                document.getElementById("miss4").style.backgroundColor = "#7f7f7f";
-            } else if (pt1 * pt2 * pt3 * (pt4 + 1) * pt5 >= 200 && ms4 !== "LOCK") {
-                document.querySelectorAll(".reach4").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
-                }); 
-            }
-            if (ms5 === "LOCK") {
-                document.getElementById("miss5").style.backgroundColor = "#7f7f7f";
-            } else if (pt1 * pt2 * pt3 * pt4 * (pt5 + 1) >= 200 && ms5 !== "LOCK") {
-                document.querySelectorAll(".reach5").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
-                }); 
-            }
-            document.querySelectorAll(".win2, .reach6, .reach7, .reach8, .reach9, .reach10").forEach(element => {
-                element.style.backgroundColor = "#fff";
-            });
-            if (ms6 === "LOCK") {
-                document.getElementById("miss6").style.backgroundColor = "#7f7f7f";
-            } else if ((pt6 + 1) * pt7 * pt8 * pt9 * pt10 >= 200 && ms6 !== "LOCK") {
-                document.querySelectorAll(".reach6").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
-                }); 
-            }
-            if (ms7 === "LOCK") {
-                document.getElementById("miss7").style.backgroundColor = "#7f7f7f";
-            } else if (pt6 * (pt7 + 1) * pt8 * pt9 * pt10 >= 200 && ms7 !== "LOCK") {
-                document.querySelectorAll(".reach7").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
-                }); 
-            }
-            if (ms8 === "LOCK") {
-                document.getElementById("miss8").style.backgroundColor = "#7f7f7f";
-            } else if (pt6 * pt7 * (pt8 + 1) * pt9 * pt10 >= 200 && ms8 !== "LOCK") {
-                document.querySelectorAll(".reach8").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
-                }); 
-            }
-            if (ms9 === "LOCK") {
-                document.getElementById("miss9").style.backgroundColor = "#7f7f7f";
-            } else if (pt6 * pt7 * pt8 * (pt9 + 1) * pt10 >= 200 && ms9 !== "LOCK") {
-                document.querySelectorAll(".reach9").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
-                }); 
-            }
-            if (ms10 === "LOCK") {
-                document.getElementById("miss10").style.backgroundColor = "#7f7f7f";
-            } else if (pt6 * pt7 * pt8 * pt9 * (pt10 + 1) >= 200 && ms10 !== "LOCK") {
-                document.querySelectorAll(".reach10").forEach(element => {
-                    element.style.backgroundColor = "#0f0";
-                }); 
-            }
-        }
-        if (tm1p >= 200 || (ms6 == "LOCK" && ms7 == "LOCK" && ms8 == "LOCK" && ms9 == "LOCK" && ms10 == "LOCK")) {
-            tm1p = 200
-                document.querySelectorAll(".win1, .reach1, .reach2, .reach3, .reach4, .reach5").forEach(element => {
-                element.style.backgroundColor = "#ff0";
-            });
-        }
-        document.getElementById("team1point").textContent = tm1p;
-        if (tm2p >= 200 || (ms1 == "LOCK" && ms2 == "LOCK" && ms3 == "LOCK" && ms4 == "LOCK" && ms5 == "LOCK")) {
-            tm2p = 200
-            document.querySelectorAll(".win2, .reach6, .reach7, .reach8, .reach9, .reach10").forEach(element => {
-                element.style.backgroundColor = "#ff0";
-            });
-        }
-        document.getElementById("team2point").textContent = tm2p;
     }
 });
 document.addEventListener("keyup", (event) => {

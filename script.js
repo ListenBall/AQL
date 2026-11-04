@@ -1,4 +1,5 @@
 // 名前入力
+let pushdowned = 0;
 document.addEventListener("keydown", (event) => {
     if (event.key === "@" && event.target.tagName != "TD") {
         let playernums = [[4, 3, 2, 1, 0, 10, 11, 12, 13, 14], [5, 6, 7, 8, 9, 19, 18, 17, 16, 15]];
@@ -19,7 +20,7 @@ document.addEventListener("keydown", (event) => {
             let loop = grades[i].length;
             for (let j = 0; j < loop; j++) {
                 let rnd = Math.floor(Math.random() * grades[i].length);
-                document.getElementById("player" + playernums[Number(playernums[0].length < playernums[1].length || (playernums[0].length == playernums[1].length && Math.random() < 0.5))].shift).textContent = document.getElementById("pl" + grades[i][rnd]).textContent;
+                document.getElementById("player" + playernums[Number(playernums[0].length < playernums[1].length || (playernums[0].length == playernums[1].length && Math.random() < 0.5))].shift()).textContent = document.getElementById("pl" + grades[i][rnd]).textContent;
                 grades[i].splice(rnd,1);
             }
         }
@@ -36,7 +37,6 @@ for (let i = 0; i < 2; i++) {
 }
 //点数計算
 let history = [];
-let pushdowned = 0;
 document.addEventListener("keydown", (event) => {
     if (pushdowned === 0 && event.target.tagName !== "TD") {
         if (![document.getElementById("team0point").textContent, document.getElementById("team1point").textContent].includes("200") && history.length != 40) {
@@ -141,7 +141,7 @@ document.addEventListener("keydown", (event) => {
             }
         }
         for (let i = 0; i < 2; i++) {
-            if (document.getElementById("team" + i + "point").textContent == 200 || (history.length == 40 && document.getElementById("team" + i + "point").textContent >= document.getElementById("team" + (1 - i) + "point").textContent)) {
+            if (document.getElementById("team" + i + "point").textContent == 200 || (history.length == 40 && Number(document.getElementById("team" + i + "point").textContent) >= Number(document.getElementById("team" + (1 - i) + "point").textContent))) {
                 document.querySelectorAll(".win" + i).forEach(element => {
                     element.style.backgroundColor = "#ff0";
                 });

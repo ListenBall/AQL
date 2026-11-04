@@ -26,16 +26,9 @@ document.addEventListener("keydown", (event) => {
         }
     }
 });
-//初期表示
+//点数計算
 let keys = [["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],[["q", "w", "e", "r", "t"],["y", "u", "i", "o", "p"]]];
 let resetlimit = 3;
-for (let i = 0; i < 10; i++) {
-    document.getElementById("point" + i).textContent = 1;
-}
-for (let i = 0; i < 2; i++) {
-    document.getElementById("team" + i + "point").textContent = 1;
-}
-//点数計算
 let history = [];
 document.addEventListener("keydown", (event) => {
     if (pushdowned === 0 && event.target.tagName !== "TD") {
